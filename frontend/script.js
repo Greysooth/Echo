@@ -7,6 +7,9 @@ const chatForm = document.getElementById('chatForm');
 const chatInput = document.getElementById('chatInput');
 const chatLog = document.getElementById('chatLog');
 
+// 🌐 Backend URL (Render)
+const BACKEND_URL = "https://echo-mdvf.onrender.com";
+
 // Weather card elements
 const weatherCard = document.querySelector('.card.weather');
 const tempEl = weatherCard.querySelector('.temp');
@@ -44,7 +47,7 @@ form.addEventListener('submit', async (e) => {
   note.textContent = 'Fetching weather…';
 
   try {
-    const res = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
+    const res = await fetch(`${BACKEND_URL}/api/weather?city=${encodeURIComponent(city)}`);
     if (!res.ok) throw new Error("Failed to fetch weather");
     const data = await res.json();
 
@@ -58,7 +61,7 @@ form.addEventListener('submit', async (e) => {
     updatePlaylist(condition);
 
     // Fetch AQI separately using lat/lon
-    const aqiRes = await fetch(`/api/air?lat=${data.coord.lat}&lon=${data.coord.lon}`);
+    const aqiRes = await fetch(`${BACKEND_URL}/api/air?lat=${data.coord.lat}&lon=${data.coord.lon}`);
     if (aqiRes.ok) {
       const aqiData = await aqiRes.json();
       const aqi = aqiData.list[0].main.aqi; // 1–5
@@ -95,7 +98,7 @@ chatForm.addEventListener('submit', async (e) => {
   chatInput.value = '';
 
   try {
-    const res = await fetch('/api/chat', {
+    const res = await fetch(`${BACKEND_URL}/api/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: text })
