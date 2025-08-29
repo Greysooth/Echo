@@ -6,10 +6,22 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
 
+const allowedOrigins = [
+  "https://greysooth.github.io"  // your GitHub Pages frontend
+];
+
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+}));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
