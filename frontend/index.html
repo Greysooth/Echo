@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Echo — Feel the World Today</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- Backdrop -->
+  <div class="bg"></div>
+
+  <!-- Site wrapper -->
+  <div class="site">
+    <!-- Header -->
+    <header class="header">
+      <a class="brand" href="#">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3a9 9 0 1 0 9 9" class="logo-outline"/>
+          <circle cx="12" cy="12" r="3.5" class="logo-dot"/>
+        </svg>
+        <span>Echo</span>
+      </a>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#briefing">Briefing</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-primary" href="#get-started">Get started</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="get-started" aria-labelledby="hero-title">
+      <div class="hero-badge">AI • Weather • Music • Maps</div>
+      <h1 id="hero-title">How does the world feel today?</h1>
+      <p class="hero-sub">Echo blends live weather, sounds, and moments into a single daily briefing you can feel.</p>
+
+      <form id="briefing" class="cta" action="#" method="post" novalidate>
+        <div class="input">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <path class="icon" d="M4 6l8 6 8-6M4 6v12h16V6"/>
+          </svg>
+          <!-- changed from email to city -->
+          <input id="city" name="city" type="text" placeholder="Enter your city" required />
+        </div>
+        <button class="btn btn-primary" type="submit">Get My Briefing</button>
+        <p class="form-note" id="formNote" role="status"></p>
+      </form>
+
+      <ul class="trust">
+      </ul>
+    </section>
+
+    <!-- Dashboard Preview / Features -->
+    <section class="features" id="features" aria-label="Feature cards">
+      <!-- Weather card -->
+      <article class="card glass weather">
+        <div class="card-head">
+          <div class="chip"><svg viewBox="0 0 24 24"><path d="M6 14a4 4 0 0 1 0-8 5 5 0 0 1 9.7-.9A4.5 4.5 0 1 1 18.5 14H6z"/></svg> Weather</div>
+          <span class="pill good">Good</span>
+        </div>
+        <div class="temp">--°C</div>
+        <p class="muted">Enter your city to get live weather updates.</p>
+        <div class="metrics">
+          <div><span class="k">AQI</span><span class="v">--</span></div>
+          <div><span class="k">Wind</span><span class="v">--</span></div>
+          <div><span class="k">Humidity</span><span class="v">--</span></div>
+        </div>
+      </article>
+
+      <!-- “Now Playing” -->
+      <article class="card glass music">
+        <div class="card-head">
+          <div class="chip"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg> Now Playing</div>
+          <span class="pill">Focus</span>
+        </div>
+        <h3 class="track">Deep Sea Bloom</h3>
+        <p class="muted">Echo Mix • 3h — adaptive lo-fi to match your day.</p>
+        <div class="controls">
+          <div id="player" class="spotify-player"></div>
+          <button class="icon-btn" aria-label="Previous">
+            <svg viewBox="0 0 24 24"><path d="M6 6v12M18 6l-8 6 8 6z"/></svg>
+          </button>
+          <button class="icon-btn primary" id="playBtn" aria-label="Play/Pause">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+          <button class="icon-btn" aria-label="Next">
+            <svg viewBox="0 0 24 24"><path d="M6 6l8 6-8 6M18 6v12"/></svg>
+          </button>
+        </div>
+      </article>
+
+      <!-- Mood / Insights -->
+      <article class="card glass insights">
+        <div class="card-head">
+          <div class="chip"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/></svg> Sense</div>
+          <span class="pill">Today</span>
+        </div>
+        <ul class="bullets">
+          <li><span class="dot"></span> Afternoon energy peak around 4:10 pm.</li>
+          <li><span class="dot"></span> Try a 15-min walk to amplify focus.</li>
+          <li><span class="dot"></span> Schedule deep work 3–6 pm.</li>
+        </ul>
+      </article>
+
+      <!-- Map -->
+      <article class="card glass map">
+        <div class="card-head">
+          <div class="chip"><svg viewBox="0 0 24 24"><path d="M12 2l4 2 6-2v18l-6 2-4-2-6 2V4zM12 2v18"/></svg> Nearby</div>
+          <span class="pill">Calm Spots</span>
+        </div>
+        <div class="mapbox">
+          <div class="pin" style="top:22%;left:36%"></div>
+          <div class="pin" style="top:58%;left:62%"></div>
+          <div class="pin" style="top:40%;left:20%"></div>
+          <div class="ring"></div>
+        </div>
+        <p class="muted">Parks within 1 km with low noise & good air.</p>
+      </article>
+
+      <!-- Chat -->
+      <article class="card glass chat" id="contact">
+        <div class="card-head">
+          <div class="chip"><svg viewBox="0 0 24 24"><path d="M4 4h16v10H7l-3 3z"/></svg> Ask Echo</div>
+          <span class="pill">Beta</span>
+        </div>
+        <div id="chatLog" class="chatlog" aria-live="polite">
+          <div class="msg ai">Hi! Want your 9 am weather-to-music briefing for tomorrow?</div>
+        </div>
+        <form id="chatForm" class="chatform">
+          <input id="chatInput" type="text" placeholder="Ask anything…" aria-label="Message Echo" />
+          <button class="btn btn-primary" type="submit" aria-label="Send">
+            <svg viewBox="0 0 24 24"><path d="M3 12l18-9-7 9 7 9-18-9z"/></svg>
+          </button>
+        </form>
+      </article>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="row">
+        <p>© 2025 Echo. All rights reserved.</p>
+        <div class="links">
+          <a href="#" aria-label="Twitter">Twitter</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="GitHub">GitHub</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
